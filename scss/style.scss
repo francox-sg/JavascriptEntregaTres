@@ -6,9 +6,12 @@
 @import "./utilities/animations";
 @import "./utilities/maps";
 
+/* Components */
+@import "./components/cards";
 
 
 /* layout */
 @import "./layout/header";
-@import "./layout/index";
 @import "./layout/footer";
+@import "./layout/index";
+@import "./layout/busqueda";
