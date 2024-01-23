@@ -1,7 +1,9 @@
 
 .headerGrid{
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.188);
+    position: sticky;
+    top: 0%;
+    background-color: rgba(42, 42, 42, 0.793);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1.875rem, 1.25rem;

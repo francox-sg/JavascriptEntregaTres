@@ -7,7 +7,7 @@ const busquedaContenedor = document.getElementById("busquedaContenedor");
 
 /* Traigo productos del Local Storage */
 export let productosDisponibles = JSON.parse(localStorage.getItem("productos"));
-console.log(productosDisponibles);
+
 
 
 

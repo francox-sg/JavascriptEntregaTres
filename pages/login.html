@@ -22,7 +22,7 @@
             <img src="../assets/img/search16px.png" alt="Icono de Busqueda">
         </div>
         <div class="headerGrid-ingresar">
-            <a href="./login.html">Ingresar</a>
+            <a href="#">Ingresar</a>
             <div>
                 <img src="../assets/img/login 56px.png" alt="Avatar">
             </div>
@@ -46,12 +46,37 @@
         </div>
     </header>
     <main>
-        <!-- Seccion Productos de Busqueda -->
-        <section id="busquedaContenedor">
+        <!-- Seccion Formulario -->
+        <section class="seccionLogin" >
+            <form id="formLogin" action="">
+                <h2>Ingresar</h2>
+                <div>
+                    <label for="usuario">Usuario</label>
+                    <input id="usuario" type="text">
+                </div>
+                <div>
+                    <label for="pass">Contraseña</label>
+                    <input id="pass" type="password">
+                </div>
+                <button id="loguearse" type="submit">Loguearse</button>
+            </form>
+            
+            <form id="formRegistrarse" action="">
+                <h2>Registrarse</h2>
+                <div>
+                    <label for="nuevoUsuario">Nuevo Usuario</label>
+                    <input id="nuevoUsuario" type="text">
+                </div>
+                <div>
+                    <label for="nuevaPass">Contraseña</label>
+                    <input id="nuevaPass" type="password">
+                </div>
+                <button id="registrarse" type="submit">Registrarse</button>
+            </form>
 
         </section>
-        <div id="popUpCarrito">
-        </div>
+
+        
     </main>
     <footer>
         <div class="footerAnchor">
@@ -70,11 +95,9 @@
             <a href="">Contactanos</a>
         </div>
     </footer>
-    <script type="module" src="../db/productos.js"></script>
+
     <script type="module" src="../db/usuarios.js"></script>
     <script type="module" src="../js/admin.js"></script>
-    <script type="module" src="../js/carrito.js"></script>
-    <script type="module" src="../js/main.js"></script>
     <script type="module" src="../js/usuario.js"></script>
 </body>
 </html>

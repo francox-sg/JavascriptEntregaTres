@@ -1,0 +1,70 @@
+const btnLoguearse =document.getElementById("loguearse");
+const btnRegistrarse =document.getElementById("registrarse");
+const formLogin =document.getElementById("formLogin");
+const formRegistrarse =document.getElementById("formRegistrarse");
+const headerIngresar =document.getElementsByClassName("headerGrid-ingresar");
+
+export let usuarioActivo;
+
+let usuarios = JSON.parse(localStorage.getItem("usuarios"));
+
+class usuario{
+    constructor(usuario,password){
+        this.id = usuarios.length +1;
+        this.user=usuario;
+        this.pass=password;
+        this.admin=false;
+    }
+}
+
+btnLoguearse.addEventListener("click",(e)=>{
+    e.preventDefault();
+    const user = formLogin.children[1].children[1].value;
+    const pass = formLogin.children[2].children[1].value;
+    const usuarioExiste = usuarios.find((usuario)=>usuario.user ===user);
+
+    if(usuarioExiste === undefined || usuarioExiste.pass != pass){
+        //Error de Usuario o pass
+        console.log("NO ingreso");
+
+    }else{
+            usuarioActivo = {
+            user: usuarioExiste.user,
+            pass: usuarioExiste.pass,
+            admin: usuarioExiste.admin,
+        }
+        //Guardo el Usuario activo
+        localStorage.setItem("usuarioActivo",JSON.stringify(usuarioActivo));
+
+        modificarAvatar();
+        location.href="./busqueda.html";
+    }
+    
+});
+
+const modificarAvatar =()=>{
+    
+    headerIngresar[0].innerHTML = `
+    <a href="">${usuarioActivo.user}</a>
+        <div>
+            <img src="https://yca.org.ar/wp-content/uploads/sites/4/2019/06/perfil-avatar-hombre-icono-redondo_24640-14044.jpg" alt="Avatar">
+        </div>
+    `;
+}
+
+btnRegistrarse.addEventListener("click",(e)=>{
+    e.preventDefault();
+    const nuevoUser = formRegistrarse.children[1].children[1].value;
+    const nuevoPass = formRegistrarse.children[2].children[1].value;
+    const usuarioExiste = usuarios.find((usuario)=>usuario.user ===nuevoUser);
+    if(usuarioExiste === undefined){
+        const nuevoUsuario = new usuario(nuevoUser , nuevoPass);
+        usuarios.push(nuevoUsuario);
+    
+        localStorage.setItem("usuarios",JSON.stringify(usuarios));
+        usuarios = JSON.parse(localStorage.getItem("usuarios"));
+    }else{
+        //El usuario ya existe
+    }
+
+});
