@@ -4,9 +4,15 @@ const formLogin =document.getElementById("formLogin");
 const formRegistrarse =document.getElementById("formRegistrarse");
 const headerIngresar =document.getElementsByClassName("headerGrid-ingresar");
 
-export let usuarioActivo;
+let usuarioActivo = JSON.parse(localStorage.getItem("usuarioActivo"));;
 
 let usuarios = JSON.parse(localStorage.getItem("usuarios"));
+
+/* Ejecutar cada vez que se abre el documento */
+document.addEventListener("DOMContentLoaded",()=>verificarUsuarioActivo());
+
+
+
 
 class usuario{
     constructor(usuario,password){
@@ -36,21 +42,13 @@ btnLoguearse.addEventListener("click",(e)=>{
         //Guardo el Usuario activo
         localStorage.setItem("usuarioActivo",JSON.stringify(usuarioActivo));
 
-        modificarAvatar();
+        verificarUsuarioActivo();
         location.href="./busqueda.html";
     }
     
 });
 
-const modificarAvatar =()=>{
-    
-    headerIngresar[0].innerHTML = `
-    <a href="">${usuarioActivo.user}</a>
-        <div>
-            <img src="https://yca.org.ar/wp-content/uploads/sites/4/2019/06/perfil-avatar-hombre-icono-redondo_24640-14044.jpg" alt="Avatar">
-        </div>
-    `;
-}
+
 
 btnRegistrarse.addEventListener("click",(e)=>{
     e.preventDefault();
@@ -68,3 +66,32 @@ btnRegistrarse.addEventListener("click",(e)=>{
     }
 
 });
+
+const verificarUsuarioActivo = ()=>{
+    
+    console.log("verificacion de Usuario y avatar");
+    if(usuarioActivo!= null){
+        
+        headerIngresar[0].innerHTML = `
+        <a href="">${usuarioActivo.user}</a>
+        <div>
+            <img src="https://yca.org.ar/wp-content/uploads/sites/4/2019/06/perfil-avatar-hombre-icono-redondo_24640-14044.jpg" alt="Avatar">
+        </div>
+        <p id="logout">Logout</p>
+    `;
+    let logout = document.getElementById("logout");
+    logout.addEventListener("click",()=>funcLogout())
+    }
+}
+
+
+const funcLogout =()=>{
+    console.log("logout");
+    localStorage.removeItem("usuarioActivo");
+    headerIngresar[0].innerHTML = `
+    <a href="#">Ingresar</a>
+    <div>
+        <img src="../assets/img/login 56px.png" alt="Avatar">
+    </div>
+    `;
+}

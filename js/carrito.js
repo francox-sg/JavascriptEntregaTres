@@ -54,7 +54,7 @@ const visualizarCarrito = ()=>{
 //Funcion Renderizado PopUp
 export const renderizarCarrito = () =>{
 
-    popUpCarrito.innerHTML =`<p id="cerrarPopUpCarrito" >X</p>`;
+    popUpCarrito.innerHTML =`<div class="popUpCarritoHeader"><p id="cerrarPopUpCarrito" >X</p></div>`;
     carrito.forEach((producto) => {
         let {id , nombre , descripcion , imagen , precio, cantidad} = producto;
         
@@ -71,9 +71,11 @@ export const renderizarCarrito = () =>{
                 <div class="cardBusquedaPrecio">
                     <h3>$${precio}</h3>
                     <div>
-                        <button id="sumarProducto${id}" >+</button>
-                        <p> Cantidad: ${cantidad}</p>
-                        <button id="restarProducto${id}" >-</button>
+                        <p> Cantidad:${cantidad}</p>
+                    </div>
+                    <div class="botonesPopUpCarrito">
+                        <button id="sumarProducto${id}" class="botonSumRestProd">+</button>
+                        <button id="restarProducto${id}" class="botonSumRestProd">-</button>
                     </div>
                 </div>
         `;
@@ -84,8 +86,12 @@ export const renderizarCarrito = () =>{
         btnSumarProducto.addEventListener("click", ()=> funcSumarProducto(id));
         btnRestarProducto.addEventListener("click", ()=> funcRestarProducto(id));
         
-    }); 
 
+    }); 
+    
+    /* Cierre Carrito */
+    const cerrarPopUpCarrito = document.getElementById("cerrarPopUpCarrito");
+    cerrarPopUpCarrito.addEventListener("click", ()=> popUpCarrito.style.display ="none");
 
     generarTotales();
 }
@@ -131,13 +137,17 @@ const generarTotales= () =>{
         const cantidadTotal =carrito.reduce((total, {cantidad} )=> total + cantidad, 0);
         div.className = "totales"
         div.innerHTML = `
-                <p>Total: $ ${costoTotal}</p>
-                <p> Cantidad: ${cantidadTotal}</p>
-                
+                <div class="contenedorTotales">
+                    <p> Cantidad: ${cantidadTotal}</p>
+                    <p>Total: $ ${costoTotal}</p>
+                </div>
         `; 
         
     }else{
-        div.innerHTML = "<p>No Hay productos en Carrito</p>"
+        div.innerHTML = `<div class="contenedorTotales"><p>No Hay productos en Carrito</p></div>`
     }
     popUpCarrito.append(div);
 }
+
+
+

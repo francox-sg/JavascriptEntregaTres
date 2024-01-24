@@ -2,10 +2,25 @@
     display:none;
     width: 30%;
     height: auto;
-    background-color: rgba(0, 0, 0, 0.391);
+    background-color: rgba(0, 0, 0, 0.626);
     position:fixed;
     top: 5.625rem;
     right: 0rem;
-
-
+    .popUpCarritoHeader{
+        display: flex;
+        justify-content: end;
+        p{
+            color: orange;
+            margin-right: 10px;
+        }
+    }
+    .botonSumRestProd{
+        color: orange;
+    }
+    .contenedorTotales{
+        background-color: rgba(0, 0, 0, 0.626);
+        p{
+            color: orange;
+        }
+    }
 }

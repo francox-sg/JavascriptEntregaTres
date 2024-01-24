@@ -80,4 +80,7 @@
 /* Cards Popup Carrito */
 .cardPopUpCarrito{
     @extend .cardBusqueda;
+    .botonesPopUpCarrito{
+        display: flex;
+    }
 }

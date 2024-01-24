@@ -6,7 +6,7 @@
     background-color: rgba(42, 42, 42, 0.793);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1.875rem, 1.25rem;
+    grid-template-rows: 1.875rem, 1.25rem,1.25rem,1.25rem;
     .headerGrid-logo{
         grid-column: 1/2;
         grid-row: 1/2;
@@ -48,6 +48,10 @@
             width: 16px;
             margin: 2px;
         }
+        a{  
+            text-decoration: none;
+            color: white;
+        }
     }
     .headerGrid-ingresar{
         grid-column: 3/4;
@@ -63,12 +67,17 @@
         div{
             width: 25px;
             height: 25px;
+            margin-right: 20px;
             border-radius: 50px;
             overflow: hidden;
             img{
                 width: 100%;
                 height: 100%;
             }
+        }
+        p{
+            margin-right: 10px;
+            color:rgb(155, 150, 150)
         }
     }
     .headerGrid-nav{
@@ -101,6 +110,7 @@
         div{
             display: flex;
             gap: 5px;
+            margin-right: 10px;
             color: map-get($color , textoHeader );
             &:nth-child(1) img{
                 width: 0.7rem;
@@ -112,5 +122,13 @@
             }
         }
         
+    }
+    .headerGrid-categorias{
+        grid-column: 1/4;
+        grid-row: 3/4;
+    }
+    .headerGrid-filtrar{
+        grid-column: 1/4;
+        grid-row: 4/5;
     }
 }
