@@ -17,7 +17,6 @@ let usuarioActivo=JSON.parse(localStorage.getItem("usuarioActivo"));
 /* Ejecutar cada vez que se abre el documento */
 document.addEventListener("DOMContentLoaded",()=>{
     if(usuarioActivo != null){
-        console.log("hay UsuarioActivo");
         const headerIngresar =document.getElementsByClassName("headerGrid-ingresar");
         headerIngresar[0].innerHTML = `
         <a href="">${usuarioActivo.user}</a>
@@ -131,22 +130,47 @@ const filtroCategoriaLibreria = document.getElementById("filtroCategoriaLibreria
 
 filtroCategoriaTodos.addEventListener("click", ()=>{
     filtroCategoria ="Todo";
+    filtroCategoriaTodos.style.color= "orange";
+    filtroCategoriaRopa.style.color= "white";
+    filtroCategoriaDeportes.style.color= "white";
+    filtroCategoriaTecnologia.style.color= "white";
+    filtroCategoriaLibreria.style.color= "white";
     aplicarFiltros();
 })
 filtroCategoriaRopa.addEventListener("click", ()=>{
     filtroCategoria ="Ropa";
+    filtroCategoriaTodos.style.color= "white";
+    filtroCategoriaRopa.style.color= "orange";
+    filtroCategoriaDeportes.style.color= "white";
+    filtroCategoriaTecnologia.style.color= "white";
+    filtroCategoriaLibreria.style.color= "white";
     aplicarFiltros();
 })
 filtroCategoriaDeportes.addEventListener("click", ()=>{
     filtroCategoria ="Deportes";
+    filtroCategoriaTodos.style.color= "white";
+    filtroCategoriaRopa.style.color= "white";
+    filtroCategoriaDeportes.style.color= "orange";
+    filtroCategoriaTecnologia.style.color= "white";
+    filtroCategoriaLibreria.style.color= "white";
     aplicarFiltros();
 })
 filtroCategoriaTecnologia.addEventListener("click", ()=>{
     filtroCategoria ="Tecnologia";
+    filtroCategoriaTodos.style.color= "white";
+    filtroCategoriaRopa.style.color= "white";
+    filtroCategoriaDeportes.style.color= "white";
+    filtroCategoriaTecnologia.style.color= "orange";
+    filtroCategoriaLibreria.style.color= "white";
     aplicarFiltros();
 })
 filtroCategoriaLibreria.addEventListener("click", ()=>{
     filtroCategoria ="Libreria";
+    filtroCategoriaTodos.style.color= "white";
+    filtroCategoriaRopa.style.color= "white";
+    filtroCategoriaDeportes.style.color= "white";
+    filtroCategoriaTecnologia.style.color= "white";
+    filtroCategoriaLibreria.style.color= "orange";
     aplicarFiltros();
 })
 
@@ -174,35 +198,63 @@ OrdenarNombreAscendente.addEventListener("click",()=>{
     if(ordenarNombreAsc === false){
         ordenarNombreAsc=true;
         ordenarNombreDes=false;
+        ordenarPrecioAsc=false;
+        ordenarPrecioDes=false;
+        OrdenarNombreAscendente.style.color="orange";
+        OrdenarNombreDescendente.style.color="black";
+        OrdenarPrecioAscendente.style.color="black";
+        OrdenarPrecioDescendente.style.color="black";
     }else{
         ordenarNombreAsc=false;
+        OrdenarNombreAscendente.style.color="black";
     }
     aplicarFiltros();
 })
 OrdenarNombreDescendente.addEventListener("click",()=>{
     if(ordenarNombreDes === false){
-        ordenarNombreDes=true;
         ordenarNombreAsc=false;
+        ordenarNombreDes=true;
+        ordenarPrecioAsc=false;
+        ordenarPrecioDes=false;
+        OrdenarNombreAscendente.style.color="black";
+        OrdenarNombreDescendente.style.color="orange";
+        OrdenarPrecioAscendente.style.color="black";
+        OrdenarPrecioDescendente.style.color="black";
     }else{
         ordenarNombreDes=false;
+        OrdenarNombreDescendente.style.color="black";
     }
     aplicarFiltros();
 })
 OrdenarPrecioAscendente.addEventListener("click",()=>{
     if(ordenarPrecioAsc === false){
+        ordenarNombreAsc=false;
+        ordenarNombreDes=false;
         ordenarPrecioAsc=true;
         ordenarPrecioDes=false;
+        OrdenarNombreAscendente.style.color="black";
+        OrdenarNombreDescendente.style.color="black";
+        OrdenarPrecioAscendente.style.color="orange";
+        OrdenarPrecioDescendente.style.color="black";
     }else{
         ordenarPrecioAsc=false;
+        OrdenarPrecioAscendente.style.color="black";
     }
     aplicarFiltros();
 })
 OrdenarPrecioDescendente.addEventListener("click",()=>{
     if(ordenarPrecioDes === false){
-        ordenarPrecioDes=true;
+        ordenarNombreAsc=false;
+        ordenarNombreDes=false;
         ordenarPrecioAsc=false;
+        ordenarPrecioDes=true;
+        OrdenarNombreAscendente.style.color="black";
+        OrdenarNombreDescendente.style.color="black";
+        OrdenarPrecioAscendente.style.color="black";
+        OrdenarPrecioDescendente.style.color="orange";
     }else{
         ordenarPrecioDes=false;
+        OrdenarPrecioDescendente.style.color="black";
     }
     aplicarFiltros();
 })
@@ -267,7 +319,6 @@ const aplicarFiltros =()=>{
     }
     //Ordenar Precio Ascendente
     if(ordenarPrecioAsc===true){
-        console.log("precioasc");
         productosFiltrados=productosFiltrados.sort((a,b)=> a.precio - b.precio);
     }
     //Ordenar Precio Descendente
@@ -281,3 +332,48 @@ const aplicarFiltros =()=>{
     
     generarCardsProductos(productosFiltrados);
 }
+
+/* Vista de Prodictos */
+
+let vistaLineal =true;
+
+const vista =document.getElementById("vista");
+
+vista.addEventListener("click",()=>{
+
+    if(vistaLineal===true){
+        busquedaContenedor.style.flexDirection="row";
+        busquedaContenedor.style.flexWrap="wrap";
+        
+        for(let i=0; i<busquedaContenedor.children.length;i++){
+            busquedaContenedor.children[i].style.height="350px";
+            busquedaContenedor.children[i].style.width="200px";
+            busquedaContenedor.children[i].style.display="flex";
+            busquedaContenedor.children[i].style.flexDirection="column";
+
+            
+        }
+
+        vistaLineal=false;
+    }else{
+        busquedaContenedor.style.flexDirection="column";
+        for(let i=0; i<busquedaContenedor.children.length;i++){
+            busquedaContenedor.children[i].style.width="90%";
+            busquedaContenedor.children[i].style.height="8rem";
+            busquedaContenedor.children[i].style.display="flex";
+            busquedaContenedor.children[i].style.flexDirection="row"
+            
+        }
+        vistaLineal=true;
+    }
+
+})
+
+
+
+
+
+
+
+
+

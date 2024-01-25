@@ -4,6 +4,13 @@ const formLogin =document.getElementById("formLogin");
 const formRegistrarse =document.getElementById("formRegistrarse");
 const headerIngresar =document.getElementsByClassName("headerGrid-ingresar");
 
+const mensajeLogin=document.getElementById("mensajeLogin"); 
+const mensajeRegistro=document.getElementById("mensajeRegistro");
+
+mensajeLogin.style.display= "none";
+mensajeRegistro.style.display= "none";
+
+
 let usuarioActivo = JSON.parse(localStorage.getItem("usuarioActivo"));;
 
 let usuarios = JSON.parse(localStorage.getItem("usuarios"));
@@ -31,7 +38,7 @@ btnLoguearse.addEventListener("click",(e)=>{
 
     if(usuarioExiste === undefined || usuarioExiste.pass != pass){
         //Error de Usuario o pass
-        console.log("NO ingreso");
+        mensajeLogin.style.display= "block";
 
     }else{
             usuarioActivo = {
@@ -61,8 +68,14 @@ btnRegistrarse.addEventListener("click",(e)=>{
     
         localStorage.setItem("usuarios",JSON.stringify(usuarios));
         usuarios = JSON.parse(localStorage.getItem("usuarios"));
+        mensajeRegistro.innerHTML= "Usuario Registrado";
+        mensajeRegistro.style.color= "green";
+        mensajeRegistro.style.display= "block";
     }else{
         //El usuario ya existe
+        mensajeRegistro.innerHTML= "El Usuario ya existe";
+        mensajeRegistro.style.color= "orange";
+        mensajeRegistro.style.display= "block";
     }
 
 });

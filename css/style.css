@@ -219,8 +219,9 @@ body {
       margin-right: 10px;
       color: white; }
       .headerGrid .headerGrid-ubicacionCarrito div:nth-child(1) img {
-        width: 0.7rem;
-        height: 1rem; }
+        width: 1rem;
+        height: 1rem;
+        background-color: orange; }
       .headerGrid .headerGrid-ubicacionCarrito div:nth-child(2) img {
         width: 1rem;
         height: 1rem; }
@@ -369,3 +370,15 @@ footer {
         width: 80px; }
     .seccionLogin form button {
       width: 80px; }
+    .seccionLogin form #mensajeLogin {
+      display: none;
+      background-color: rgba(0, 0, 0, 0.492);
+      font-size: 13px;
+      text-align: center;
+      color: orange; }
+    .seccionLogin form #mensajeRegistro {
+      display: none;
+      background-color: rgba(0, 0, 0, 0.492);
+      font-size: 13px;
+      text-align: center;
+      color: orange; }

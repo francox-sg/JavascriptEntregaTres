@@ -23,6 +23,20 @@
         button{
             width: 80px;
         }
+        #mensajeLogin{
+            display:none;
+            background-color: rgba(0, 0, 0, 0.492);
+            font-size: 13px;
+            text-align: center;
+            color: orange;
+        }
+        #mensajeRegistro{
+            display:none;
+            background-color: rgba(0, 0, 0, 0.492);
+            font-size: 13px;
+            text-align: center;
+            color: orange;
+        }
         
 
     }

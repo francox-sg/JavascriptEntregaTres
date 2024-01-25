@@ -1,1 +1,1 @@
-location.href="./pages/busqueda.html"
+location.href="./pages/busqueda.html";
